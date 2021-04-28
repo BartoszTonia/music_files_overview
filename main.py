@@ -2,7 +2,6 @@ from pygame import mixer
 from pathlib import Path
 import pandas as pd
 import mutagen
-import keyboard
 
 
 music_folder = Path('C:/Users/Lenovo/Music')   # Enter main music folder
@@ -79,7 +78,10 @@ def join_paths(folders):
 
 
 join_paths(folder_list)
+
 df = pd.DataFrame([el for el in mp3list], columns=['title', 'bpm', 'folder', 'absolute'])
+
+# show only duplicates
 dfa = df[df['title'].isin(df[df['title'].duplicated()]['title'].values)].sort_values(by='title', ascending=False)
 
 
